@@ -3,47 +3,48 @@
 
 {% block main %}
 
-<!-- Types Section -->
+<!-- Categories Section -->
 <div class="container my-5">
-    {% if not types %}
-        {% all_types as types %}
+    {% if not categories %}
+        {% all_categories as categories %}
     {% endif %}
 
-    {% if types %}
-    <h2 class="text-center mb-4">Turlar</h2>
+    {% if categories %}
+    <h2 class="text-center mb-4">Kategoriyalar</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for type in types %}
+        {% for category in categories %}
         <div class="col">
             <div class="card h-100 shadow-sm border-light">
                 <div class="card-body">
-                    <h5 class="card-title">{{ type.name }}</h5>
-                    <p class="card-text">{{ type.created_at }}</p>
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <p class="card-text">{{ category.created_at }}</p>
                 </div>
                 <div class="card-footer text-muted text-center">
-                    <a href="{% url 'type_detail' type.id %}" class="btn btn-primary w-100">Turlarga o'tish</a>
+                    <a href="{% url 'category_detail' category.id %}" class="btn btn-primary w-100">Turlarga o'tish</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
     {% else %}
-    <h2 class="text-center mb-4">Hozirda turlar mavjud emas.</h2>
+    <h2 class="text-center mb-4">Hozirda kategoriyalar mavjud emas.</h2>
     {% endif %}
 </div>
-<!-- End types section  -->
+<!-- End Categories section  -->
 
-<!-- Flowers Section -->
+<!-- Products Section -->
 <div class="container my-5">
-    {% if flowers %}
-    <h2 class="text-center mb-4">Gullar</h2>
+    {% all_products as products %}
+    {% if products %}
+    <h2 class="text-center mb-4">Mahsulotlar</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for flower in flowers %}
+        {% for product in products %}
         <div class="col">
             <div class="card shadow-sm border-light">
                 <div class="card-body">
-                    <h5 class="card-title">{{ flower.name }}</h5>
-                    <p class="card-text">{{ flower.type.name }}</p>
-                    <a href="{% url 'flower_detail' flower.id %}" class="btn btn-outline-primary w-100">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.category.name }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary w-100">
                         <i class="fas fa-info-circle"></i> Batafsil
                     </a>
                 </div>
@@ -52,9 +53,9 @@
         {% endfor %}
     </div>
     {% else %}
-    <h2 class="text-center mb-4">Hozirda gullar mavjud emas.</h2>
+    <h2 class="text-center mb-4">Hozirda mahsulotlar mavjud emas.</h2>
     {% endif %}
 </div>
-<!-- Endi flowers section -->
+<!-- Endi Products section -->
 
 {% endblock main %}

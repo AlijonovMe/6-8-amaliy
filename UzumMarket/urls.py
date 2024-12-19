@@ -21,6 +21,7 @@ from .settings import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('manager.urls')),
 ]
 
 if DEBUG:
