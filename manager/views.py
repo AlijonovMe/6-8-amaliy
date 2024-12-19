@@ -13,7 +13,7 @@ def index(request):
 
 def categories(request, category_id):
     category = get_object_or_404(Categories, id=category_id)
-    products = get_list_or_404(Products, category_id=category_id)
+    products = Products.objects.filter(category_id=category_id, published=True)
     context = {
         'categories': [category],
         'products': products,

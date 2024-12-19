@@ -34,7 +34,10 @@
 
 <!-- Products Section -->
 <div class="container my-5">
-    {% all_products as products %}
+    {% if not products %}
+        {% all_products as products %}
+    {% endif %}
+
     {% if products %}
     <h2 class="text-center mb-4">Mahsulotlar</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
